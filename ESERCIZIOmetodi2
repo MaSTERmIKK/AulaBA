@@ -1,0 +1,48 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        boolean loop = true;
+        while (loop) {
+            Scanner myStr = new Scanner(System.in);
+            Main oggetto = new Main();
+            int calcolo = 0;
+            int length = 0; 
+
+            // QUI RICHIAMO IL METODO
+            oggetto.printLength(length);
+
+            oggetto.provaParametri(calcolo);
+
+            printLength2();
+
+            System.out.println("Vuoi continuare?  SI - NO");
+            String risposta = myStr.nextLine();
+            if(risposta.equalsIgnoreCase("no")){ loop = false; }
+        }
+    }
+
+
+    public void provaParametri(int x){
+
+        x += 15;
+    }
+
+
+    public void printLength(int length) {
+        Scanner myStr = new Scanner(System.in);
+        System.out.println("dammi una parola da misurare");
+        String descrizione = myStr.nextLine();
+        length = descrizione.length();
+        System.out.println("Lunghezza: " + length);
+    }
+
+    static public void printLength2() {
+        Scanner myStr = new Scanner(System.in);
+        System.out.println("dammi una parola da misurare");
+        String descrizione = myStr.nextLine();
+        int length = descrizione.length();
+        System.out.println("Lunghezza: " + length);
+    }
+}
