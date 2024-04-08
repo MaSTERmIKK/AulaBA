@@ -1,0 +1,87 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class User {
+    private String username;
+    private String password;
+    private List<String> data;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+        this.data = new ArrayList<>();
+    }
+
+    public boolean login(String username, String password) {
+        return this.username.equals(username) && this.password.equals(password);
+    }
+
+    public void saveData(String value) {
+        data.add(value);
+    }
+
+    public void printData() {
+        System.out.println("Data for user " + username + ": " + data);
+    }
+
+    public void changeUsername(String newUsername) {
+        this.username = newUsername;
+    }
+
+    public void changePassword(String newPassword) {
+        this.password = newPassword;
+    }
+    
+    // Getter for username (used for checking uniqueness)
+    public String getUsername() {
+        return username;
+    }
+
+    // You may want to implement additional functionality such as checking uniqueness of usernames,
+    // handling of wrong login attempts, etc.
+}
+
+// Class for managing users and uniqueness of usernames.
+public class UserManager {
+    private List<User> users;
+
+    public UserManager() {
+        this.users = new ArrayList<>();
+    }
+
+    public boolean addUser(String username, String password) {
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                return false; // Username must be unique
+            }
+        }
+        users.add(new User(username, password));
+        return true;
+    }
+
+    // You can add more methods to manage users here (e.g., findUser, deleteUser, etc.)
+}
+
+// Example usage
+public class SocialNetwork {
+    public static void main(String[] args) {
+        UserManager userManager = new UserManager();
+
+        // Adding users
+        userManager.addUser("john_doe", "12345");
+        userManager.addUser("jane_doe", "password");
+
+        // Assuming you have a way to get the current user object, perhaps after login:
+        User currentUser = userManager.findUser("john_doe");
+        if (currentUser != null && currentUser.login("john_doe", "12345")) {
+            currentUser.saveData("Some data here");
+            currentUser.printData();
+
+            currentUser.changeUsername("john_doe_new");
+            currentUser.changePassword("newpassword");
+        }
+    }
+}
+
+
+// questa può essere una soluzione ma tranquilli ragazzi quando torno andremo tranquilli verso i nostri obbiettivi e lo vedremo solo come gancio logico per continuare. 
