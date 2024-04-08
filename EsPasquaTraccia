@@ -32,16 +32,13 @@ public class User {
         this.password = newPassword;
     }
     
-    // Getter for username (used for checking uniqueness)
+   
     public String getUsername() {
         return username;
     }
 
-    // You may want to implement additional functionality such as checking uniqueness of usernames,
-    // handling of wrong login attempts, etc.
 }
 
-// Class for managing users and uniqueness of usernames.
 public class UserManager {
     private List<User> users;
 
@@ -59,19 +56,19 @@ public class UserManager {
         return true;
     }
 
-    // You can add more methods to manage users here (e.g., findUser, deleteUser, etc.)
+   
 }
 
-// Example usage
+
 public class SocialNetwork {
     public static void main(String[] args) {
         UserManager userManager = new UserManager();
 
-        // Adding users
+       
         userManager.addUser("john_doe", "12345");
         userManager.addUser("jane_doe", "password");
 
-        // Assuming you have a way to get the current user object, perhaps after login:
+        
         User currentUser = userManager.findUser("john_doe");
         if (currentUser != null && currentUser.login("john_doe", "12345")) {
             currentUser.saveData("Some data here");
