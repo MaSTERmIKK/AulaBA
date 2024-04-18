@@ -1,0 +1,68 @@
+import java.util.ArrayList;
+import java.util.List;
+
+// Definizione della classe astratta ElementoMenu
+abstract class ElementoMenu {
+    String nome;
+    double prezzo;
+
+    public ElementoMenu(String nome, double prezzo) {
+        this.nome = nome;
+        this.prezzo = prezzo;
+    }
+
+    // Metodo astratto per ottenere il prezzo
+    abstract double getPrezzo();
+}
+
+// Definizione della classe Piatto che estende ElementoMenu
+class Piatto extends ElementoMenu {
+    String ingredienti;
+    String chef;
+
+    public Piatto(String nome, String ingredienti, double prezzo, String chef) {
+        super(nome, prezzo);
+        this.ingredienti = ingredienti;
+        this.chef = chef;
+    }
+
+    // Implementazione del metodo getPrezzo
+    @Override
+    double getPrezzo() {
+        return prezzo;
+    }
+}
+
+// Definizione della classe Menu
+class Menu {
+    List<ElementoMenu> elementi = new ArrayList<>();
+
+    // Metodo per aggiungere un elemento al menu
+    public void aggiungiElemento(ElementoMenu elemento) {
+        elementi.add(elemento);
+    }
+
+    // Metodo per ottenere la lista degli elementi
+    public List<ElementoMenu> getElementi() {
+        return elementi;
+    }
+}
+
+// Definizione della classe Ordinazione
+class Ordinazione {
+    List<ElementoMenu> elementiOrdinati = new ArrayList<>();
+
+    // Metodo per aggiungere un elemento alla ordinazione
+    public void aggiungiElemento(ElementoMenu elemento) {
+        elementiOrdinati.add(elemento);
+    }
+
+    // Metodo per calcolare il totale dell'ordinazione
+    public double calcolaTotale() {
+        double totale = 0;
+        for (ElementoMenu elemento : elementiOrdinati) {
+            totale += elemento.getPrezzo();
+        }
+        return totale;
+    }
+}
